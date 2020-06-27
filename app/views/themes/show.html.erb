@@ -7,7 +7,7 @@
 
 <h3>新規コメント作成</h3>
 <%= form_for @newcomment, :url => comment_create_path do |f| %>
-	<p>お名前</p>
+	<p>お名前(ネーム）</p>
 	<p><%= f.text_field :name %></p>
 	<p>本文</p>
 	<p><%= f.text_area :body %></p>
