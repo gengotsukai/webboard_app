@@ -1,2 +1,18 @@
-<h1>Themes#show</h1>
-<p>Find me in app/views/themes/show.html.erb</p>
+<h1><%= @theme.title %></h1>
+<% @comments.each_with_index do |comment , idx| %>
+	<p>
+		<%= idx + 1 %>. <%= comment.name %> : <%= comment.body %>
+	</p>
+<% end %>
+
+<h3>新規コメント作成</h3>
+<%= form_for @newcomment, :url => comment_create_path do |f| %>
+	<p>お名前</p>
+	<p><%= f.text_field :name %></p>
+	<p>本文</p>
+	<p><%= f.text_area :body %></p>
+	<%= f.hidden_field :theme_id %>
+	<%= f.submit %>
+<% end %>
+
+<%= link_to "テーマ一覧へ", themes_index_path %>
