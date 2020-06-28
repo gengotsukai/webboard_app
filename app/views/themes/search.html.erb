@@ -1,0 +1,13 @@
+<p>検索(本文の内容で探したいものを検索してください)</p>
+<%= form_tag(comments_search_path,:method => 'get') do %>
+ 	<%= text_field_tag :search %>
+  	<%= submit_tag '検索', :body => nil %>
+<% end %>
+
+<% @searchedcomments.each_with_index do |searchedcomment , idx| %>
+	<p>
+		<%= idx + 1 %>. <a>[投稿者(ハンドルネーム）]</a><%= searchedcomment.name %> : <a>[本文]</a><%= searchedcomment.body %>
+	</p>
+<% end %>
+
+<%= link_to "テーマ一覧へ", themes_index_path %>

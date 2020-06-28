@@ -10,6 +10,10 @@ class ThemesController < ApplicationController
   	@comments = Comment.where(theme_id: params[:id])
   end
 
+  def search
+    @searchedcomments = Comment.search(params[:search])
+  end
+
   def create
   	@theme = Theme.new(params[:theme].permit(:title))
   	@theme.save
