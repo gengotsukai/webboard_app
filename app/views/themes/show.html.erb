@@ -1,13 +1,19 @@
+<p>検索(本文の内容で探したいものを検索してください)</p>
+<%= form_tag(comments_search_path,:method => 'get') do %>
+ 	<%= text_field_tag :search %>
+  	<%= submit_tag '検索', :body => nil %>
+<% end %>
+
 <h1><%= @theme.title %></h1>
 <% @comments.each_with_index do |comment , idx| %>
 	<p>
-		<%= idx + 1 %>. <%= comment.name %> : <%= comment.body %>
+		<%= idx + 1 %>. <a>[投稿者(ハンドルネーム）]</a><%= comment.name %> : <a>[本文]</a><%= comment.body %>
 	</p>
 <% end %>
 
 <h3>新規コメント作成</h3>
 <%= form_for @newcomment, :url => comment_create_path do |f| %>
-	<p>お名前(ネーム）</p>
+	<p>投稿者(ハンドルネーム）</p>
 	<p><%= f.text_field :name %></p>
 	<p>本文</p>
 	<p><%= f.text_area :body %></p>
