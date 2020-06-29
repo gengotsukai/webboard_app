@@ -10,6 +10,16 @@
   </head>
 
   <body>
+
+    <header class="navbar navbar-default navbar-inverse">
+     <div class="nav navbar-nav navbar-right">
+     <!--if文でサインインとアウト時の表示を変更-->
+      <% if user_signed_in? %>
+        <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>
+      <% end %>
+     </div>
+    </header>
+
     <%= yield %>
   </body>
 </html>
