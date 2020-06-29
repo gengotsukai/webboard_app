@@ -10,6 +10,20 @@
 
 <h1>テーマ新規作成</h1>
 <%= form_for @newTheme, :url => {:action => 'create'} do |f| %>
-	<%= f.text_field :title %>
-	<%= f.submit %>
+	<p>
+		<%= f.label :title, 'テーマ名' %>
+		<%= f.text_field :title %>
+	</p>
+
+	<p>
+		<%= f.label :category, 'カテゴリ' %>
+    	<%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %> 
+      		<%= category.label do %>
+        		<%= category.check_box %>
+        		<%= category.text %>
+      		<% end %>
+    	<% end %>
+	</p>
+
+	<%= f.submit '作成' %>
 <% end %>

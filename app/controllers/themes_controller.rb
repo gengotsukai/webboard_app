@@ -15,7 +15,7 @@ class ThemesController < ApplicationController
   end
 
   def create
-  	@theme = Theme.new(params[:theme].permit(:title))
+  	@theme = Theme.new(theme_params)
   	@theme.save
   	redirect_to themes_index_path
   end
@@ -24,5 +24,9 @@ class ThemesController < ApplicationController
   	@theme = Theme.find(params[:id])
   	@theme.destroy
   	redirect_to themes_index_path
+  end
+
+  def theme_params
+    params.require(:theme).permit(:title, category_ids: [])
   end
 end
