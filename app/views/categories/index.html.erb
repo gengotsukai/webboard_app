@@ -1,0 +1,37 @@
+<%= form_for @category, url: categories_path, method: :post do |f| %>
+        <!-- 入力フォーム -->
+        <div class="category-field">
+          <%= f.label :カテゴリー　%>
+          <%= f.text_field :name %>
+        </div>
+        <div class="category-button">
+          <%= f.submit "追加", class: "btn btn-md btn-primary" %>
+        </div>
+<% end %>
+
+<table class="table table-hover">
+        <thead>
+          <tr class="active">
+            <th>カテゴリー名</th>
+            <th>テーマ名</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <td><%= category.name %></td>
+              <td>
+                <% category.themes.each do |theme| %>
+                  <%= link_to theme.title, themes_show_path(theme), class: "btn btn-primary" %>
+                <% end %>
+              </td>
+              <td>
+              	<%= link_to "削除する", category_path(category.id), method: :delete, class: "btn-sm btn-danger", data: {confirm: "本当に削除してもよろしいですか？"} %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+</table>
+
+<%= link_to "テーマ一覧へ", themes_index_path %>
